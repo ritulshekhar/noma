@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Bell,
   CalendarDays,
@@ -18,6 +17,7 @@ import {
   Users,
   X,
 } from "lucide-react";
+import { useMemo, useState } from "react";
 
 type Task = {
   id: number;
@@ -64,12 +64,14 @@ export default function HomePage() {
   const [showAdd, setShowAdd] = useState(false);
   const [newTask, setNewTask] = useState("");
 
-  const completedTasks = tasks.filter((task) => task.completed).length;
+  const completedTasks = useMemo(
+    () => tasks.filter((task) => task.completed).length,
+    [tasks]
+  );
 
-  const progress =
-    tasks.length > 0
-      ? Math.round((completedTasks / tasks.length) * 100)
-      : 0;
+  const progress = tasks.length
+    ? Math.round((completedTasks / tasks.length) * 100)
+    : 0;
 
   function toggleTask(id: number) {
     setTasks((currentTasks) =>
@@ -87,7 +89,9 @@ export default function HomePage() {
   function addTask() {
     const title = newTask.trim();
 
-    if (!title) return;
+    if (!title) {
+      return;
+    }
 
     const task: Task = {
       id: Date.now(),
@@ -117,6 +121,11 @@ export default function HomePage() {
               key={label}
               className={`nav-item ${label === "Home" ? "active" : ""
                 }`}
+              onClick={() => {
+                if (label === "Tasks") {
+                  window.location.href = "/tasks";
+                }
+              }}
             >
               <Icon size={19} strokeWidth={1.8} />
               <span>{label}</span>
@@ -211,7 +220,9 @@ export default function HomePage() {
 
             <button
               className="primary-button"
-              onClick={() => setShowAdd(true)}
+              onClick={() => {
+                window.location.href = "/tasks";
+              }}
             >
               <Plus size={18} />
               Add task
@@ -227,7 +238,12 @@ export default function HomePage() {
               <h2>Today&apos;s tasks</h2>
             </div>
 
-            <button className="text-button">
+            <button
+              className="text-button"
+              onClick={() => {
+                window.location.href = "/tasks";
+              }}
+            >
               View all
               <ChevronRight size={16} />
             </button>
@@ -257,7 +273,10 @@ export default function HomePage() {
                   <h3>{task.title}</h3>
 
                   <div className="task-meta">
-                    <span className="tag">{task.tag}</span>
+                    <span className="tag">
+                      {task.tag}
+                    </span>
+
                     <span>{task.due}</span>
                   </div>
                 </div>
@@ -292,6 +311,7 @@ export default function HomePage() {
 
               <div>
                 <strong>DBMS Class Test</strong>
+
                 <span>
                   September 8 · 10:00 AM
                 </span>
@@ -305,6 +325,7 @@ export default function HomePage() {
 
               <div>
                 <strong>AIoT Assignment</strong>
+
                 <span>
                   September 10 · 11:59 PM
                 </span>
@@ -320,6 +341,11 @@ export default function HomePage() {
             key={label}
             className={`mobile-nav-item ${label === "Home" ? "active" : ""
               }`}
+            onClick={() => {
+              if (label === "Tasks") {
+                window.location.href = "/tasks";
+              }
+            }}
           >
             <Icon size={19} strokeWidth={1.8} />
 
@@ -330,7 +356,9 @@ export default function HomePage() {
 
       <button
         className="mobile-fab"
-        onClick={() => setShowAdd(true)}
+        onClick={() => {
+          window.location.href = "/tasks";
+        }}
         aria-label="Add task"
       >
         <CirclePlus size={24} />
