@@ -1381,3 +1381,297 @@ a {
     flex-wrap: wrap;
   }
 }
+
+.notes-page {
+  min-height: 100dvh;
+  padding: 42px 48px 70px;
+  background: var(--noma-cream);
+}
+
+.notes-header {
+  width: min(1080px, 100%);
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.notes-title-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.notes-title-area h1 {
+  margin: 0;
+
+  color: var(--noma-brown-dark);
+
+  font-size: 34px;
+
+  letter-spacing: -0.04em;
+}
+
+.notes-toolbar {
+  width: min(1080px, 100%);
+  margin: 30px auto 22px;
+}
+
+.notes-grid {
+  width: min(1080px, 100%);
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 13px;
+}
+
+.note-card {
+  min-height: 205px;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--noma-white);
+
+  border: 1px solid transparent;
+
+  border-radius: 20px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-2px);
+
+  border-color: var(--noma-border);
+}
+
+.note-card.pinned {
+  background: var(--noma-cream-soft);
+}
+
+.note-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note-tag {
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  background: var(--noma-cream);
+
+  color: var(--noma-brown);
+
+  font-size: 10px;
+}
+
+.note-card-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  color: var(--noma-brown-soft);
+}
+
+.note-more {
+  width: 32px;
+  height: 32px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: var(--noma-brown-soft);
+
+  cursor: pointer;
+}
+
+.note-more:hover {
+  background: var(--noma-cream);
+}
+
+.note-card h2 {
+  margin: 20px 0 7px;
+
+  color: var(--noma-brown-dark);
+
+  font-size: 18px;
+
+  letter-spacing: -0.025em;
+}
+
+.note-card>p {
+  margin: 0;
+
+  color: var(--noma-brown-soft);
+
+  font-size: 12px;
+
+  line-height: 1.65;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+.note-card-footer {
+  margin-top: auto;
+  padding-top: 17px;
+
+  color: var(--noma-brown-soft);
+
+  font-size: 9px;
+}
+
+.empty-notes {
+  grid-column: 1 / -1;
+
+  min-height: 320px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  text-align: center;
+
+  background: var(--noma-white);
+
+  border-radius: var(--radius-card);
+
+  color: var(--noma-brown-soft);
+}
+
+.empty-notes h2 {
+  margin: 6px 0 0;
+
+  color: var(--noma-brown-dark);
+
+  font-size: 20px;
+}
+
+.empty-notes p {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+}
+
+.note-modal {
+  width: min(560px, 100%);
+
+  max-height: calc(100dvh - 30px);
+
+  overflow-y: auto;
+
+  padding: 24px;
+
+  border-radius: 25px;
+
+  background: var(--noma-white);
+
+  box-shadow:
+    0 25px 70px rgba(122, 84, 71, 0.2);
+}
+
+.form-field select {
+  appearance: none;
+}
+
+.note-modal-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.delete-note-button {
+  min-height: 44px;
+
+  padding: 0 15px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  border-radius: 999px;
+
+  background: var(--noma-cream);
+
+  color: var(--noma-brown);
+
+  cursor: pointer;
+
+  font-weight: 700;
+}
+
+.note-modal-actions .full {
+  flex: 1;
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .notes-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .notes-page {
+    padding: 27px 17px 45px;
+  }
+
+  .notes-title-area h1 {
+    font-size: 28px;
+  }
+
+  .notes-header .primary-button {
+    width: 43px;
+    height: 43px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    font-size: 0;
+  }
+
+  .notes-header .primary-button svg {
+    width: 19px;
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .note-modal {
+    padding: 20px;
+    border-radius: 22px;
+  }
+}
