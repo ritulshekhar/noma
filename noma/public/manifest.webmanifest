@@ -1,0 +1,18 @@
+{
+    "name": "NOMA",
+    "short_name": "NOMA",
+    "description": "A calm workspace for tasks, notes, deadlines and academic life.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FCEDD6",
+    "theme_color": "#FCEDD6",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}
